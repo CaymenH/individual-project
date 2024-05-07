@@ -57,17 +57,17 @@ mqtt_client = MQTTClient(
         ssl_params={'server_hostname': hivemq_host},
         user=hivemq_name,
         password=hivemq_pw)
-# links to flask
-def message_recieved(topic, response):
-    
-    print("Message recieved!")
-    ledPin.toggle()
 
-mqtt_subscribe_topic = "led/topic"
-mqtt_client.connect()
-mqtt_client.set_callback(message_recieved)
-mqtt_client.subscribe(mqtt_subscribe_topic)
-print("client connected")
+def message_recieved(topic, response): # defines the function message recieved 
+    
+    print("Message recieved!") # prints Message recieved
+    ledPin.toggle() # turns LED off
+
+mqtt_subscribe_topic = "led/topic" # sets the MQTT topic and subscribes to the topic "led/topic"
+mqtt_client.connect() # conects MQTT to hive broker
+mqtt_client.set_callback(message_recieved) # it uses a callback function that is call when a message is recieved on the topic "led/topic"
+mqtt_client.subscribe(mqtt_subscribe_topic) # This line subscribes the MQTT client to the topic specified by mqtt_subscribe_topic.
+print("client connected") # when MQTT is successfully connected print "client connect"
 
 time.sleep(2)
 while True:
@@ -78,4 +78,5 @@ while True:
      mqtt_client.publish('distance', str(distance))
      if distance <= 10: # if the distance is less that 10cm go to the next line
          ledPin.value(1) # turn the led on
+
 
