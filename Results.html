@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="container p-3">
+    {% for result in results %}
+
+    <div class="card mt-2" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ result.id }}: {{ result.name }}</h5>
+          <p class="card-text">From: {{ result.location }}</p>
+        </div>
+    </div>
+
+    {% end for %}
+</body>
+</html>
